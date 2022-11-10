@@ -111,7 +111,18 @@ const Home = () => {
             <br></br>
             
                 <Grid container spacing={3}>
-                    <Grid item xs={4} >
+
+                    <Grid item xs={100} md={4}>
+                            {cargandoDos || cargando ? (
+                                <CircularProgress />
+                                
+                            ): (objetoPrueba&& <Perro foto= {objetoPrueba.foto} nombre={objetoPrueba.nombre} 
+                                funcionCancelados={stackCancelados} funcionAceptados={stackAceptados} estadoBoton={cargando}></Perro>
+                        )}
+     
+                    </Grid>
+
+                    <Grid item xs={6} md={4}>
                     
                     <h1>Cancelados</h1>
                         {cancelados.map((element, index) => (
@@ -121,18 +132,10 @@ const Home = () => {
                         ))}
                     </Grid>
 
-                    <Grid item xs={4}>
-                            {cargandoDos || cargando ? (
-                                <CircularProgress />
-                                
-                            ): (objetoPrueba&& <Perro foto= {objetoPrueba.foto} nombre={objetoPrueba.nombre} 
-                                funcionCancelados={stackCancelados} funcionAceptados={stackAceptados} estadoBoton={cargando}></Perro>
-                        )}
+                    
 
-                            
-                             
-                    </Grid>
-                    <Grid item xs={4}>
+                    
+                    <Grid item xs={6} md={4}>
                     <h1>Aceptados</h1>
                         {aceptados.map((element, index) => (
                             <Perro 

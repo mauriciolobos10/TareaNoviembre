@@ -1,7 +1,6 @@
 import { Box, Button, Card, CardActions, CardContent, Grid, TextField } from "@mui/material";
 import { Stack } from "@mui/system";
 import React, { Component }  from 'react';
-import Image from '@jy95/material-ui-image'
 
 const Perro = ({foto,nombre,estilo=null, funcionCancelados = null, funcionAceptados = null,estadoBoton=null, cancelado= null,
     funcionArrepentirseC=null, funcionArrepentirseA=null}) => {

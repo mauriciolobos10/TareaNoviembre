@@ -1,5 +1,6 @@
 import { useQuery, queryCache } from "@tanstack/react-query";
 import axios from "axios";
+import { LoremIpsum } from "lorem-ipsum";
 
 export function useBuscarPerro() {
     return useQuery(
@@ -16,12 +17,9 @@ export function useBuscarPerro() {
 export const buscarPerro = async () => {
     const { data } =  await axios.get("https://dog.ceo/api/breeds/image/random")
     let nombrePerro = generateRandomString(6);
-    
-    console.log(data.message);
-    let PerroPreFusion= {foto: data.message, nombre: nombrePerro}
+    let descripcionPerro = lorem.generateSentences(3)
+    let PerroPreFusion= {foto: data.message, nombre: nombrePerro, descripcion: descripcionPerro}
 
-    console.log("hoola");
-    console.log(PerroPreFusion);
     return PerroPreFusion;
 
     //setObjetoPrueba(response.data);
@@ -35,5 +33,16 @@ const  generateRandomString = (num) => {
         result1 += characters.charAt(Math.floor(Math.random() * charactersLength));
     }
 
-    return result1;
+    return result1;   
 }
+
+const lorem = new LoremIpsum({
+    sentencesPerParagraph: {
+      max: 8,
+      min: 4
+    },
+    wordsPerSentence: {
+      max: 16,
+      min: 4
+    }
+  });

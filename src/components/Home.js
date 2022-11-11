@@ -29,6 +29,8 @@ const Home = () => {
 
   console.log(objetoPrueba);
 
+    
+
     //console.log("alo");
 
     // const cargarImagenes = () => {
@@ -70,24 +72,24 @@ const Home = () => {
         
     }
     const stackCancelados = (itemExterno) => {
-        setCancelados((cancelados) => [...cancelados, itemExterno]);
+        setCancelados((cancelados) => [itemExterno,...cancelados]);
         recargar();
         //cargarImagenes();
         //console.log(itemExterno);
     }
     const stackAceptados = (itemExterno) => {
-        setAceptados((aceptados) => [...aceptados, itemExterno]);
+        setAceptados((aceptados) => [ itemExterno, ...aceptados]);
         recargar();
         //cargarImagenes();
     }
     const stackArrepentidoC = (itemExterno) => {
-        setAceptados((aceptados) => [...aceptados, itemExterno]);
+        setAceptados((aceptados) => [ itemExterno, ...aceptados]);
         let result = cancelados.filter((item) => item.perroFoto !== itemExterno.perroFoto);
         setCancelados(result);
         
     }
     const stackArrepentidoA = (itemExterno) => {
-        setCancelados((cancelados) => [...cancelados, itemExterno]);
+        setCancelados((cancelados) => [ itemExterno,...cancelados]);
         let result = aceptados.filter((item) => item.perroFoto !== itemExterno.perroFoto);
         setAceptados(result);
         
@@ -110,48 +112,52 @@ const Home = () => {
 
             <br></br>
             
-                <Grid container spacing={3}>
+                <Grid container spacing={3} >
 
-                    <Grid item xs={100} md={4}>
+                    <Grid item xs={100} md={4} >
+                    <Typography variant="h5" gutterBottom align="center" >
+                    Candidato
+                    </Typography>
                             {cargandoDos || cargando ? (
                                 <CircularProgress />
                                 
-                            ): (objetoPrueba&& <Perro foto= {objetoPrueba.foto} nombre={objetoPrueba.nombre} 
+                            ): (objetoPrueba&& <Perro foto= {objetoPrueba.foto} nombre={objetoPrueba.nombre} descripcion={objetoPrueba.descripcion}
                                 funcionCancelados={stackCancelados} funcionAceptados={stackAceptados} estadoBoton={cargando}></Perro>
                         )}
      
                     </Grid>
-
-                    <Grid item xs={6} md={4}>
                     
-                    <h1>Cancelados</h1>
-                        {cancelados.map((element, index) => (
-                            <Perro 
-                            foto= {element.perroFoto} nombre= {element.perroNombre} cancelado= {"cancelado"}  funcionArrepentirseC= {stackArrepentidoC}
-                            ></Perro>
-                        ))}
-                    </Grid>
-
-                    
-
-                    
-                    <Grid item xs={6} md={4}>
-                    <h1>Aceptados</h1>
-                        {aceptados.map((element, index) => (
-                            <Perro 
-                                foto= {element.perroFoto} nombre= {element.perroNombre} cancelado= {"aceptado" } funcionArrepentirseA= {stackArrepentidoA}
-                            ></Perro>
-                        ))}
+                    <Grid item xs={6} md={4} >
+                        <Typography variant="h5" gutterBottom align="center" >
+                        Aceptados
+                        </Typography>
+                        <Grid item  sx={{ overflowY: "scroll", maxHeight: "80vh"}}>
+                            {aceptados.map((element, index) => (
+                                <Perro 
+                                    foto= {element.perroFoto} nombre= {element.perroNombre} descripcion={element.descripcionPerro} cancelado= {"aceptado" } funcionArrepentirseA= {stackArrepentidoA}
+                                ></Perro>
+                            ))}
+                        </Grid>
+                            
                     </Grid>
                     
+                    <Grid item xs={6} md={4} >
+                    <Typography variant="h5" gutterBottom align="center" >
+                    Cancelados
+                    </Typography>
+                        <Grid item sx={{ overflowY: "scroll", maxHeight: "80vh"}}>
+                            {cancelados.map((element, index) => (
+                                <Perro 
+                                foto= {element.perroFoto} nombre= {element.perroNombre} descripcion={element.descripcionPerro} cancelado= {"cancelado"}  funcionArrepentirseC= {stackArrepentidoC}
+                                ></Perro>
+                                
+                            ))}
+                        </Grid>
+                        
+                    </Grid>
                 
                     
                 </Grid>
-                {/* {listado.map((element, index) => (
-                    <Poke dato= {element.name}/>
-                    //</Card><Typography > {element.name}</Typography>
-                    
-                ))} */}
                 
             </CardContent>        
         </Card>

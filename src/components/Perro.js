@@ -16,7 +16,7 @@ const Perro = ({foto,nombre,descripcion,estilo=null, funcionCancelados = null, f
     return(
     <>
       
-        <Card >
+        <Card sx={{ maxHeight: "80vh"}}>
             <Card item  sx={{ maxHeight: "60vh"}}>
 
             <h2 style={{textAlign: "center"}}>{perroFusion.perroNombre}</h2>

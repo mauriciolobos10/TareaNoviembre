@@ -11,6 +11,7 @@ import { LinearProgress } from "@mui/material";
 const Home = () => {
     
     
+    
     // useEffect(() => {
     //     cargarImagenes();
     // }, []);
